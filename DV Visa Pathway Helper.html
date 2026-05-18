@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)https://imcho27.github.io/d-v-0.6/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DV Visa Pathway Helper</title>
+    <!-- All styles are in style.css -->
+    <link rel="stylesheet" href="./DV Visa Pathway Helper_files/style.css">
+<script src="chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/js/recordConsoleEvents.js"></script></head>
+<body data-new-gr-c-s-check-loaded="14.1292.0" data-gr-ext-installed="">
+
+    <!-- ============================================================ -->
+    <!-- SAFE EXIT BAR                                                 -->
+    <!-- Always visible at the top of every screen                    -->
+    <!-- Clicking this immediately takes the user to google.co.uk     -->
+    <!-- ============================================================ -->
+    <div id="safe-exit-bar">
+        <span class="safe-exit-label">Close this tool safely at any time</span>
+        <button id="safe-exit-btn" onclick="safeExit()">Safe Exit</button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- DISCLAIMER BAR                                                -->
+    <!-- Always visible below the safe exit bar                       -->
+    <!-- ============================================================ -->
+    <div id="disclaimer-bar">
+        <p>
+            <strong>Important:</strong> This tool does not provide legal advice.
+            It is for information purposes only and does not confirm eligibility
+            for any visa route. Always speak to a qualified immigration solicitor.
+        </p>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- MAIN APP WRAPPER                                              -->
+    <!-- All steps and pages sit inside this container                -->
+    <!-- ============================================================ -->
+    <div id="app">
+
+        <!-- HEADER -->
+        <header id="main-header">
+            <h1>DV Visa Pathway Helper</h1>
+            <p class="header-subtitle">
+                A safe and confidential tool to help you understand your immigration options
+            </p>
+        </header>
+
+        <!-- -------------------------------------------------------- -->
+        <!-- PROGRESS INDICATOR                                        -->
+        <!-- Updated by script.js as the user moves through steps     -->
+        <!-- -------------------------------------------------------- -->
+        <div id="progress-container" style="display: block;">
+            <div id="progress-bar-track">
+                <div id="progress-bar-fill" style="width: 100%;"></div>
+            </div>
+            <p id="step-label">Summary complete</p>
+        </div>
+
+
+        <!-- ======================================================== -->
+        <!-- WELCOME / SAFETY NOTICE PAGE                             -->
+        <!-- Shown first. User must tick checkbox before Step 1.      -->
+        <!-- ======================================================== -->
+        <section id="welcome-page" class="step-section">
+
+            <!-- ---------------------------------------------------- -->
+            <!-- WELCOME HEADER                                        -->
+            <!-- ---------------------------------------------------- -->
+            <div class="welcome-header">
+                <div class="welcome-header-icon"></div>
+                <div class="welcome-header-text">
+                    <h2 class="welcome-heading">Before You Begin</h2>
+                    <p class="welcome-intro">
+                        Private. No data stored. Not legal advice.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ---------------------------------------------------- -->
+            <!-- WHAT THIS TOOL DOES CARD                              -->
+            <!-- ---------------------------------------------------- -->
+            <div class="welcome-what-card">
+                <div class="welcome-what-icon"></div>
+                <div class="welcome-what-body">
+                    <h3 class="welcome-what-title">This tool will help you:</h3>
+                    <ul class="welcome-what-list">
+                        <li>Creates a simple DV case summary</li>
+                        <li>Helps you prepare for speaking with a solicitor or support adviser</li>
+                        <li>You do not need to describe specific incidents</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ---------------------------------------------------- -->
+            <!-- TRUST / SAFETY CARDS (2x2 grid)                      -->
+            <!-- ---------------------------------------------------- -->
+            <div class="welcome-trust-grid">
+
+                <div class="welcome-trust-card">
+                    <div class="welcome-trust-icon welcome-trust-icon--legal">N</div>
+                    <div class="welcome-trust-body">
+                        <strong class="welcome-trust-title">Not legal advice</strong>
+                        <p class="welcome-trust-text">
+                            For information and preparation only.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="welcome-trust-card">
+                    <div class="welcome-trust-icon welcome-trust-icon--data">D</div>
+                    <div class="welcome-trust-body">
+                        <strong class="welcome-trust-title">No data stored</strong>
+                        <p class="welcome-trust-text">
+                            Answers stay in your browser.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="welcome-trust-card">
+                    <div class="welcome-trust-icon welcome-trust-icon--exit">S</div>
+                    <div class="welcome-trust-body">
+                        <strong class="welcome-trust-title">Safe Exit</strong>
+                        <p class="welcome-trust-text">
+                            Leave quickly at any time.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="welcome-trust-card">
+                    <div class="welcome-trust-icon welcome-trust-icon--chat">A</div>
+                    <div class="welcome-trust-body">
+                        <strong class="welcome-trust-title">No detailed description</strong>
+                        <p class="welcome-trust-text">
+                            General questions only.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <!-- end .welcome-trust-grid -->
+
+            <!-- ---------------------------------------------------- -->
+            <!-- IMPORTANT NOTICE                                      -->
+            <!-- ---------------------------------------------------- -->
+            <div class="welcome-important">
+                <span class="welcome-important-icon">i</span>
+                <p>
+                    <strong>Important:</strong>
+                    This tool does not confirm eligibility or guarantee any Home Office decision.
+                </p>
+            </div>
+
+            <!-- ---------------------------------------------------- -->
+            <!-- AGREEMENT CHECKBOX                                    -->
+            <!-- id="welcome-agree" must not change — used by JS      -->
+            <!-- ---------------------------------------------------- -->
+            <div class="welcome-agreement">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="welcome-agree" name="welcome-agree">
+                    I understand this tool is for information and preparation only,
+                    and is not legal advice.
+                </label>
+            </div>
+
+            <!-- Validation error — shown by script.js if checkbox not ticked -->
+            <p class="validation-error" id="error-welcome"></p>
+
+            <div class="button-row">
+                <button class="btn-next" onclick="startTool()">
+                    Start Private Summary →
+                </button>
+            </div>
+
+        </section>
+        <!-- end #welcome-page -->
+
+
+        <!-- ======================================================== -->
+        <!-- STEP 1: ELIGIBILITY CHECK                                 -->
+        <!-- ======================================================== -->
+        <section id="step-1" class="step-section">
+
+            <h2 class="step-title">Step 1: Eligibility Check</h2>
+            <p class="step-intro">
+                Please answer the questions below. There are no right or wrong answers.
+                Your responses help us understand your situation.
+            </p>
+
+            <!-- Visa Type -->
+            <div class="form-group">
+                <label for="visa-type">
+                    What was your most recent visa or permission to stay in the UK?
+                </label>
+                <select id="visa-type" name="visa-type">
+                    <option value="">-- Please select --</option>
+                    <option value="spouse-civil-partner">Spouse or Civil Partner Visa</option>
+                    <option value="unmarried-partner">Unmarried Partner Visa</option>
+                    <option value="fiance">Fiancé(e) Visa</option>
+                    <option value="leave-to-remain-partner">Leave to Remain as a Partner</option>
+                    <option value="refugee">Refugee or Humanitarian Protection</option>
+                    <option value="student">Student Visa</option>
+                    <option value="work-visa">Work Visa</option>
+                    <option value="visitor">Visitor Visa</option>
+                    <option value="eea-eu">EU / EEA Settlement Scheme (Pre-Settled or Settled Status)</option>
+                    <option value="no-leave">No current leave / overstayed</option>
+                    <option value="other">Other</option>
+                    <option value="not-sure">I am not sure</option>
+                </select>
+            </div>
+
+            <!-- Location -->
+            <div class="form-group">
+                <label>Are you applying from inside the UK or from overseas?</label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="location" value="inside-uk">
+                        Inside the UK
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="location" value="overseas">
+                        Overseas (outside the UK)
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="location" value="not-sure">
+                        I am not sure
+                    </label>
+                </div>
+            </div>
+
+            <!-- Validation error message (shown by script.js if needed) -->
+            <p class="validation-error" id="error-step-1"></p>
+
+            <div class="button-row">
+                <button class="btn-next" onclick="nextStep(1)">Next →</button>
+            </div>
+
+        </section>
+
+
+        <!-- ======================================================== -->
+        <!-- STEP 2: RELATIONSHIP BREAKDOWN                            -->
+        <!-- ======================================================== -->
+        <section id="step-2" class="step-section">
+
+            <h2 class="step-title">Step 2: Relationship Breakdown</h2>
+            <p class="step-intro">
+                These questions help us understand the circumstances of your relationship ending.
+                Please answer as honestly as you feel comfortable.
+            </p>
+
+            <!-- Relationship permanently broken down -->
+            <div class="form-group">
+                <label>Has your relationship with your partner permanently broken down?</label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="relationship-breakdown" value="yes">
+                        Yes
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="relationship-breakdown" value="no">
+                        No
+                    </label>
+                </div>
+            </div>
+
+            <!-- Breakdown caused by domestic abuse -->
+            <div class="form-group">
+                <label>
+                    Do you believe the breakdown of your relationship happened because of domestic abuse?
+                </label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="abuse-caused-breakdown" value="yes">
+                        Yes
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="abuse-caused-breakdown" value="no">
+                        No
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="abuse-caused-breakdown" value="unsure">
+                        I am not sure
+                    </label>
+                </div>
+            </div>
+
+            <p class="validation-error" id="error-step-2"></p>
+
+            <div class="button-row">
+                <button class="btn-back" onclick="prevStep(2)">← Back</button>
+                <button class="btn-next" onclick="nextStep(2)">Next →</button>
+            </div>
+
+        </section>
+
+
+        <!-- ======================================================== -->
+        <!-- STEP 3: TYPES OF ABUSE                                    -->
+        <!-- ======================================================== -->
+        <section id="step-3" class="step-section">
+
+            <h2 class="step-title">Step 3: Types of Abuse</h2>
+            <p class="step-intro">
+                Please select the types of abuse you have experienced.
+                You do not need to describe what happened in detail.
+                All forms of abuse are taken seriously.
+            </p>
+
+            <!-- Abuse type checkboxes -->
+            <div class="form-group">
+                <label>What types of abuse have you experienced? (Select all that apply)</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="abuse-type" value="physical">
+                        Physical abuse
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="abuse-type" value="emotional">
+                        Emotional or psychological abuse
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="abuse-type" value="financial">
+                        Financial or economic abuse
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="abuse-type" value="coercive-control">
+                        Coercive control
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="abuse-type" value="sexual">
+                        Sexual abuse
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="abuse-type" value="immigration-control">
+                        Immigration-related abuse (e.g. threats to report you to the Home Office)
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="abuse-type" value="digital">
+                        Digital or online abuse (e.g. monitoring your devices or accounts)
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="abuse-type" value="threats">
+                        Threats or intimidation
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="abuse-type" value="isolation">
+                        Isolation from family or friends
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="abuse-type" value="other">
+                        Other
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="abuse-type" value="prefer-not-to-say">
+                        I prefer not to say
+                    </label>
+                </div>
+            </div>
+
+            <p class="validation-error" id="error-step-3"></p>
+
+            <div class="button-row">
+                <button class="btn-back" onclick="prevStep(3)">← Back</button>
+                <button class="btn-next" onclick="nextStep(3)">Next →</button>
+            </div>
+
+        </section>
+
+
+        <!-- ======================================================== -->
+        <!-- STEP 4: EVIDENCE COLLECTED                                -->
+        <!-- ======================================================== -->
+        <section id="step-4" class="step-section">
+
+            <h2 class="step-title">Step 4: Evidence Collected</h2>
+            <p class="step-intro">
+                Please tell us what supporting documents or evidence you currently have.
+                Do not worry if you have very little — evidence is considered in the round.
+            </p>
+
+            <!-- Evidence checkboxes -->
+            <div class="form-group">
+                <label>What evidence do you currently have? (Select all that apply)</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="evidence" value="police-report">
+                        Police report or crime reference number
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="evidence" value="medical-records">
+                        Medical records or GP notes
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="evidence" value="injunction">
+                        Injunction or restraining order
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="evidence" value="social-services">
+                        Social services letter or referral
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="evidence" value="refuge-letter">
+                        Letter from a refuge or shelter
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="evidence" value="dv-support-letter">
+                        Letter from a domestic abuse support organisation
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="evidence" value="witness-statements">
+                        Witness statements from family or friends
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="evidence" value="messages">
+                        Screenshots or records of threatening messages
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="evidence" value="counsellor-letter">
+                        Letter from a counsellor or therapist
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="evidence" value="no-evidence">
+                        I do not have any evidence at the moment
+                    </label>
+                </div>
+            </div>
+
+            <p class="validation-error" id="error-step-4"></p>
+
+            <div class="button-row">
+                <button class="btn-back" onclick="prevStep(4)">← Back</button>
+                <button class="btn-next" onclick="nextStep(4)">Next →</button>
+            </div>
+
+        </section>
+
+
+        <!-- ======================================================== -->
+        <!-- STEP 5: CURRENT SITUATION & URGENCY                      -->
+        <!-- ======================================================== -->
+        <section id="step-5" class="step-section">
+
+            <h2 class="step-title">Step 5: Current Situation &amp; Urgency</h2>
+            <p class="step-intro">
+                These questions help us understand your current circumstances.
+                Please answer as many as you feel safe and comfortable to do so.
+            </p>
+
+            <!-- Still living with abuser -->
+            <div class="form-group">
+                <label>Are you still living with the abuser?</label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="still-living-with-abuser" value="yes">
+                        Yes
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="still-living-with-abuser" value="no">
+                        No
+                    </label>
+                </div>
+            </div>
+
+            <!-- Worried abuser will find out -->
+            <div class="form-group">
+                <label>Are you worried the abuser will find out about this application?</label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="worried-abuser-finds-out" value="yes">
+                        Yes
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="worried-abuser-finds-out" value="no">
+                        No
+                    </label>
+                </div>
+            </div>
+
+            <!-- Urgent help with housing or money -->
+            <div class="form-group">
+                <label>Do you need urgent help with housing or money?</label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="urgent-help" value="yes">
+                        Yes
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="urgent-help" value="no">
+                        No
+                    </label>
+                </div>
+            </div>
+
+            <!-- UKVI account access -->
+            <div class="form-group">
+                <label>
+                    Do you have access to your own UKVI (UK Visas and Immigration) online account?
+                </label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="ukvi-access" value="yes">
+                        Yes
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="ukvi-access" value="no">
+                        No
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="ukvi-access" value="not-sure">
+                        I am not sure
+                    </label>
+                </div>
+            </div>
+
+            <!-- Dependent children -->
+            <div class="form-group">
+                <label>
+                    Do you have any dependent children who are applying with you
+                    or affected by this situation?
+                </label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="has-children" value="yes" onclick="showChildrenQuestions()">
+                        Yes
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="has-children" value="no" onclick="hideChildrenQuestions()">
+                        No
+                    </label>
+                </div>
+            </div>
+
+            <!-- ---------------------------------------------------- -->
+            <!-- CHILDREN FOLLOW-UP QUESTIONS                          -->
+            <!-- Hidden by default. Shown by script.js when Yes above  -->
+            <!-- ---------------------------------------------------- -->
+            <div id="children-questions" class="conditional-section" style="display: none;">
+
+                <div class="form-group">
+                    <label for="children-count">How many dependent children?</label>
+                    <input type="number" id="children-count" name="children-count" min="1" max="20" placeholder="Enter a number">
+                </div>
+
+                <div class="form-group">
+                    <label>Are any of them under 18 years old?</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="children-under-18" value="yes">
+                            Yes
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="children-under-18" value="no">
+                            No
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Does any child have a disability or additional needs?</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="children-disability" value="yes">
+                            Yes
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="children-disability" value="no">
+                            No
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+            <!-- end #children-questions -->
+
+            <!-- Visa expiry date -->
+            <div class="form-group">
+                <label>When does your current visa or leave to remain expire?</label>
+                <div class="expiry-row">
+                    <select id="visa-expiry-month" name="visa-expiry-month">
+                        <option value="">Month</option>
+                        <option value="01">January</option>
+                        <option value="02">February</option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05">May</option>
+                        <option value="06">June</option>
+                        <option value="07">July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                    <select id="visa-expiry-year" name="visa-expiry-year">
+                        <option value="">Year</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
+                        <option value="dont-know">I don't know</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Previous Home Office contact -->
+            <div class="form-group">
+                <label>
+                    Have you had any previous contact with the Home Office about this situation
+                    (for example, a refusal or a request for more information)?
+                </label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="home-office-contact" value="yes">
+                        Yes
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="home-office-contact" value="no">
+                        No
+                    </label>
+                </div>
+            </div>
+
+            <p class="validation-error" id="error-step-5"></p>
+
+            <div class="button-row">
+                <button class="btn-back" onclick="prevStep(5)">← Back</button>
+                <button class="btn-next" onclick="nextStep(5)">Generate My Summary →</button>
+            </div>
+
+        </section>
+
+
+        <!-- ======================================================== -->
+        <!-- STEP 6: RESULTS — YOUR DV CASE SUMMARY                   -->
+        <!-- ======================================================== -->
+        <section id="step-6" class="step-section active">
+
+            <!-- Two-column premium results layout -->
+            <div id="results-layout">
+
+                <!-- ------------------------------------------------ -->
+                <!-- LEFT COLUMN: main summary content                 -->
+                <!-- ------------------------------------------------ -->
+                <div id="results-main">
+
+                    <h2 class="results-heading">Your DV Case Summary</h2>
+
+                    <!-- Inline reassurance text -->
+                    <div class="results-disclaimer hidden">
+                        <p>
+                            This summary is based only on the answers you provided.
+                            It is for preparation and discussion purposes only and is
+                            <strong>not legal advice</strong>.
+                        </p>
+                    </div>
+
+                    <!-- Important notice box -->
+                    <div class="results-important-box">
+                        <strong class="results-important-title">Important</strong>
+                        <p>
+                            This is not a Home Office decision, legal advice,
+                            or confirmation of eligibility.
+                        </p>
+                    </div>
+
+                    <!-- -------------------------------------------- -->
+                    <!-- SUGGESTED NEXT STEPS                          -->
+                    <!-- -------------------------------------------- -->
+                    <div id="suggested-next-steps" class="next-steps-box">
+                        <h3>Suggested Next Steps</h3>
+                        <ul>
+                            <li>Download your full case summary.</li>
+                            <li>Keep evidence somewhere safe.</li>
+                            <li>Consider preparing a personal statement.</li>
+                            <li>
+                                Speak to a solicitor or qualified adviser if your visa is expiring,
+                                you have had Home Office contact, or you need urgent support.
+                            </li>
+                            <li>
+                                Use local support services if you need help with safety,
+                                housing, money, or children.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- -------------------------------------------- -->
+                    <!-- SUMMARY OUTPUT                                -->
+                    <!-- Populated entirely by script.js              -->
+                    <!-- -------------------------------------------- -->
+                    <div id="summary-output"><div class="summary-preview"><div class="summary-preview-heading">Your Summary at a Glance</div><div class="summary-preview-item"><span class="summary-preview-label">Visa / permission held</span><span class="summary-preview-value">Unmarried Partner Visa</span></div><div class="summary-preview-item"><span class="summary-preview-label">Applying from</span><span class="summary-preview-value">Inside the UK</span></div><div class="summary-preview-item"><span class="summary-preview-label">Abuse indicated</span><span class="summary-preview-value">4 types indicated</span></div><div class="summary-preview-item"><span class="summary-preview-label">Evidence held</span><span class="summary-preview-value">4 items held</span></div><div class="summary-preview-item"><span class="summary-preview-label">Visa / leave expiry</span><span class="summary-preview-value">September 2026</span></div></div><div class="evidence-snapshot"><div class="evidence-snapshot-heading">Several evidence items indicated</div><p class="evidence-snapshot-text">Your answers show several types of supporting evidence have been identified. A qualified adviser or solicitor can help organise this evidence clearly.</p><p class="evidence-snapshot-label">Evidence indicated</p><ul class="evidence-snapshot-list"><li>Police report or crime reference number</li><li>Medical records or GP notes</li><li>Injunction or restraining order</li></ul><p class="evidence-snapshot-more">and other evidence indicated</p></div><div class="summary-guidance"><h3>Key Guidance</h3><div class="guidance-intro"><p>Evidence is considered <em>in the round</em>. Even if you have limited documentation, your personal statement and other supporting information are important and will be taken into account.</p><p>The impact of trauma is recognised in domestic abuse immigration applications. You are not expected to recall every detail perfectly. A solicitor can help you present your account clearly and sensitively.</p></div><div class="guidance-cards"><div class="guidance-card"><div class="guidance-card-title">Support organisation letter</div><div class="guidance-card-text">Where possible, obtaining a letter or referral from a domestic abuse support organisation — such as through a local IDVA service or MARAC referral — can significantly strengthen your application. Organisations such as Women's Aid Luton or Luton All Women's Centre may be able to assist.</div></div><div class="guidance-card"><div class="guidance-card-title">UKVI online account</div><div class="guidance-card-text">If you do not have access to your own UKVI online account, a solicitor can help you set one up or manage the application on your behalf.</div></div></div></div></div>
+
+                    <!-- -------------------------------------------- -->
+                    <!-- LEGAL / SAFETY DISCLAIMER BOX                -->
+                    <!-- -------------------------------------------- -->
+                    <div id="results-legal-disclaimer" class="results-full-disclaimer">
+                        <p>
+                            This tool does not provide legal advice, does not confirm eligibility,
+                            and does not guarantee any Home Office decision.
+                            Domestic abuse immigration cases are evidence-sensitive and should be
+                            reviewed by a qualified adviser or solicitor where possible.
+                        </p>
+                    </div>
+
+                    <!-- -------------------------------------------- -->
+                    <!-- ACTION BUTTONS                                -->
+                    <!-- -------------------------------------------- -->
+                    <div class="action-buttons">
+
+                        <button class="btn-action" onclick="editSummary()">
+                            Edit This Summary
+                        </button>
+
+                        <button class="btn-action btn-action--primary" onclick="downloadSummary()">
+                            Download Full Case Summary
+                        </button>
+
+                        <button class="btn-action" onclick="togglePersonalStatementGuidance()">
+                            Get Guidance on Writing Your Personal Statement
+                        </button>
+
+                        <button class="btn-action" onclick="toggleSolicitorContact()">
+                            Speak to a Solicitor for a Full Review
+                        </button>
+
+                        <button class="btn-action btn-support" onclick="showSupportPage()">
+                            Find Local Support in Luton &amp; Bedfordshire
+                        </button>
+
+                    </div>
+
+                    <!-- -------------------------------------------- -->
+                    <!-- PERSONAL STATEMENT GUIDANCE                   -->
+                    <!-- Hidden by default, toggled by script.js      -->
+                    <!-- -------------------------------------------- -->
+                    <div id="personal-statement-guidance" class="info-box hidden">
+                        <h3>Writing Your Personal Statement</h3>
+                        <p>
+                            Your personal statement is an important part of your application.
+                            Here are some guidance points to help you get started:
+                        </p>
+                        <ul>
+                            <li>Write in your own words. You do not need formal or legal language.</li>
+                            <li>Describe the relationship and when things began to change.</li>
+                            <li>Explain how the abuse affected you and, if relevant, your children.</li>
+                            <li>Include dates and details where you feel safe and comfortable to do so.</li>
+                            <li>Explain why the relationship has permanently broken down.</li>
+                            <li>Mention any steps you have taken to leave or seek help.</li>
+                            <li>You do not need to include every incident — focus on what feels most important to you.</li>
+                            <li>A solicitor can help you review and refine your statement before submission.</li>
+                        </ul>
+                        <p class="info-note">
+                            Your statement will be read with care and sensitivity by the Home Office caseworker.
+                            Trauma and the impact of abuse are taken into account.
+                        </p>
+                    </div>
+
+                    <!-- -------------------------------------------- -->
+                    <!-- SOLICITOR CONTACT                             -->
+                    <!-- Hidden by default, toggled by script.js      -->
+                    <!-- -------------------------------------------- -->
+                    <div id="solicitor-contact" class="info-box hidden">
+                        <h3>Speak to a Solicitor</h3>
+                        <p>
+                            Our team at <strong>KQ Solicitors</strong> specialises in domestic abuse
+                            immigration cases. We provide a confidential, sensitive, and professional consultation.
+                        </p>
+                        <p>
+                            To book a consultation, please contact us directly.
+                            All enquiries are handled with the strictest confidentiality.
+                        </p>
+                        <p class="info-note">
+                            Please do not share sensitive personal details by email without
+                            speaking to us first.
+                        </p>
+                    </div>
+
+                </div>
+                <!-- end #results-main -->
+
+                <!-- ------------------------------------------------ -->
+                <!-- RIGHT COLUMN: status / support panel             -->
+                <!-- ------------------------------------------------ -->
+                <div id="results-panel" class="panel-status--important">
+                    <div class="results-panel-inner"><div class="results-panel-icon">!</div><h3 class="results-panel-heading">Important Points Identified</h3><p class="results-panel-text">Your answers show points that may need careful explanation or supporting evidence.</p><div class="trust-pills"><span class="trust-pill">Not legal advice</span><span class="trust-pill">No data stored</span><span class="trust-pill">Use for solicitor/support discussion</span></div></div>
+                </div>
+                <!-- end #results-panel -->
+
+            </div>
+            <!-- end #results-layout -->
+
+        </section>
+        <!-- end #step-6 -->
+
+
+        <!-- ======================================================== -->
+        <!-- LOCAL SUPPORT PAGE                                        -->
+        <!-- Shown when user clicks "Find Local Support"              -->
+        <!-- ======================================================== -->
+        <section id="support-page" class="step-section">
+
+            <h2 class="step-title">Local Support in Luton &amp; Bedfordshire</h2>
+            <p class="step-intro">
+                The organisations below offer free, confidential support.
+                You do not need to be ready to leave or take any action to contact them.
+                They are here to help.
+            </p>
+
+            <!-- Support organisation cards -->
+
+            <div class="support-card">
+                <h3>National Domestic Abuse Helpline</h3>
+                <p>Free, confidential helpline available 24 hours a day, 7 days a week.</p>
+                <p><strong>Phone:</strong> 0808 2000 247</p>
+                <p><strong>Run by:</strong> Refuge</p>
+                <p class="support-note">
+                    If you are in immediate danger, please call <strong>999</strong>.
+                </p>
+            </div>
+
+            <div class="support-card">
+                <h3>Women's Aid Luton</h3>
+                <p>Local support for women and children experiencing domestic abuse in Luton.</p>
+                <p>Offers refuge, outreach, and independent domestic violence advocates (IDVA).</p>
+                <p class="support-note">
+                    Contact through the national Women's Aid website: womensaid.org.uk
+                </p>
+            </div>
+
+            <div class="support-card">
+                <h3>Luton All Women's Centre</h3>
+                <p>
+                    A community centre in Luton providing advice, advocacy, and support to women
+                    from all backgrounds, including those with immigration concerns.
+                </p>
+                <p class="support-note">
+                    Supports women regardless of immigration status or nationality.
+                </p>
+            </div>
+
+            <div class="support-card">
+                <h3>Victim Support Luton</h3>
+                <p>
+                    Free and confidential support for people affected by crime,
+                    including domestic abuse.
+                </p>
+                <p><strong>National Supportline:</strong> 08 08 16 89 111</p>
+                <p class="support-note">
+                    Available 24/7. You do not have to report the crime to the police
+                    to access their support.
+                </p>
+            </div>
+
+            <div class="button-row">
+                <button class="btn-back" onclick="showStep(6)">
+                    ← Back to My Summary
+                </button>
+            </div>
+
+        </section>
+        <!-- end #support-page -->
+
+    </div>
+    <!-- end #app -->
+
+    <!-- ============================================================ -->
+    <!-- JavaScript linked at the bottom so all HTML loads first      -->
+    <!-- All interactivity is handled in script.js                    -->
+    <!-- ============================================================ -->
+    <script src="./DV Visa Pathway Helper_files/script.js.download"></script>
+
+
+
+<div class="calendly-lifecycle-optibutton_singleton"><template shadowrootmode="closed"><div class="calendly-opti-root"></div></template></div><div class="calendly-frame-tag" manager_id="d9e2c2ad-0d55-4966-8e7a-0e2577698b74" id="d9e2c2ad-0d55-4966-8e7a-0e2577698b74" style="height: 0px; width: 0px; visibility: hidden;"></div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
