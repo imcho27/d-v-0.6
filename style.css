@@ -1,0 +1,2084 @@
+/* ================================================================
+   DV VISA PATHWAY HELPER — style.css
+   Calm, professional, trauma-aware design
+   Suitable for a UK immigration law firm website
+   Fully mobile responsive
+   ================================================================ */
+
+
+/* ----------------------------------------------------------------
+   1. COLOUR VARIABLES & GLOBAL RESET
+   ---------------------------------------------------------------- */
+
+:root {
+    /* Brand colours — soft and calming */
+    --colour-primary:        #2a6496;   /* deep calm blue */
+    --colour-primary-light:  #d6e8f5;   /* very light blue for backgrounds */
+    --colour-primary-hover:  #1e4d73;   /* darker blue on hover */
+
+    /* Page & card backgrounds */
+    --colour-bg:             #f4f7fa;   /* soft off-white page background */
+    --colour-card:           #ffffff;   /* white card background */
+
+    /* Text colours */
+    --colour-text:           #2c3e50;   /* dark charcoal for body text */
+    --colour-text-light:     #5d6d7e;   /* muted grey for secondary text */
+    --colour-text-white:     #ffffff;
+
+    /* Borders and dividers */
+    --colour-border:         #d5e0ec;   /* soft blue-grey border */
+    --colour-border-focus:   #2a6496;   /* blue border on focus */
+
+    /* Safe Exit button — deep plum, visible but professional */
+    --colour-exit-bg:        #6e2b47;
+    --colour-exit-hover:     #55203a;
+
+    /* Disclaimer bar — soft amber */
+    --colour-disclaimer-bg:  #fef9e7;
+    --colour-disclaimer-border: #f0c040;
+    --colour-disclaimer-text:   #7d6608;
+
+    /* Validation error */
+    --colour-error:          #c0392b;
+    --colour-error-bg:       #fdecea;
+
+    /* Support cards — warm accent */
+    --colour-support-accent: #1a6b4a;   /* deep green for support section */
+    --colour-support-hover:  #145239;
+    --colour-support-card-top: #e8f5ee; /* light green card header */
+
+    /* Info boxes */
+    --colour-info-bg:        #eaf3fb;
+    --colour-info-border:    #aacde8;
+
+    /* Spacing scale */
+    --space-xs:   4px;
+    --space-sm:   8px;
+    --space-md:   16px;
+    --space-lg:   24px;
+    --space-xl:   40px;
+
+    /* Radius */
+    --radius-sm:  6px;
+    --radius-md:  10px;
+    --radius-lg:  16px;
+
+    /* Shadows */
+    --shadow-card: 0 2px 12px rgba(42, 100, 150, 0.10);
+    --shadow-btn:  0 2px 6px  rgba(42, 100, 150, 0.18);
+}
+
+/* Global reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: auto;
+}
+
+body {
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: var(--colour-bg);
+    color: var(--colour-text);
+    line-height: 1.7;
+    min-height: 100vh;
+}
+
+
+/* ----------------------------------------------------------------
+   2. SAFE EXIT BAR
+   Always fixed at the top — visible on every screen
+   ---------------------------------------------------------------- */
+
+#safe-exit-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--colour-exit-bg);
+    z-index: 1000;
+    padding: var(--space-sm) var(--space-md);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+#safe-exit-btn {
+    background-color: var(--colour-text-white);
+    color: var(--colour-exit-bg);
+    border: 2px solid var(--colour-text-white);
+    border-radius: var(--radius-sm);
+    padding: 6px 18px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+#safe-exit-btn:hover,
+#safe-exit-btn:focus {
+    background-color: var(--colour-exit-bg);
+    color: var(--colour-text-white);
+    outline: 3px solid var(--colour-text-white);
+}
+
+/* Explanatory label inside the safe exit bar */
+.safe-exit-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.4;
+}
+
+.safe-exit-label::after {
+    content: '|';
+    margin-left: var(--space-md);
+    color: rgba(255, 255, 255, 0.35);
+}
+
+
+/* ----------------------------------------------------------------
+   3. DISCLAIMER BAR
+   Always visible below the safe exit bar
+   ---------------------------------------------------------------- */
+
+#disclaimer-bar {
+    position: fixed;
+    top: 44px;           /* sits directly below the safe exit bar */
+    left: 0;
+    width: 100%;
+    background-color: var(--colour-disclaimer-bg);
+    border-bottom: 2px solid var(--colour-disclaimer-border);
+    z-index: 999;
+    padding: var(--space-sm) var(--space-lg);
+    text-align: center;
+}
+
+#disclaimer-bar p {
+    font-size: 0.82rem;
+    color: var(--colour-disclaimer-text);
+    line-height: 1.5;
+}
+
+
+/* ----------------------------------------------------------------
+   4. MAIN APP WRAPPER
+   Adds top padding to clear the fixed bars above
+   ---------------------------------------------------------------- */
+
+#app {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 120px var(--space-lg) var(--space-xl);
+    /* 120px top padding clears both fixed bars comfortably */
+}
+
+
+/* ----------------------------------------------------------------
+   5. HEADER
+   ---------------------------------------------------------------- */
+
+#main-header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    padding: var(--space-xl) var(--space-md) var(--space-lg);
+}
+
+#main-header h1 {
+    font-size: 2rem;
+    color: var(--colour-primary);
+    font-weight: bold;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+}
+
+.header-subtitle {
+    font-size: 1rem;
+    color: var(--colour-text-light);
+    margin-top: var(--space-sm);
+    font-style: italic;
+}
+
+
+/* ----------------------------------------------------------------
+   6. PROGRESS INDICATOR
+   ---------------------------------------------------------------- */
+
+#progress-container {
+    display: none;             /* hidden on welcome page — script.js shows it from Step 1 onward */
+    margin-bottom: var(--space-lg);
+    text-align: center;
+}
+
+#progress-bar-track {
+    background-color: var(--colour-border);
+    border-radius: 99px;
+    height: 10px;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: var(--space-sm);
+}
+
+#progress-bar-fill {
+    background-color: var(--colour-primary);
+    height: 100%;
+    width: 20%;           /* script.js updates this per step: 20/40/60/80/100 */
+    border-radius: 99px;
+    transition: width 0.2s ease;
+}
+
+#step-label {
+    font-size: 0.85rem;
+    color: var(--colour-text-light);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+
+/* ----------------------------------------------------------------
+   7. STEP SECTIONS
+   Each step is a card — only the active one is shown
+   ---------------------------------------------------------------- */
+
+.step-section {
+    display: none;            /* hidden by default — script.js shows active step */
+    background-color: var(--colour-card);
+    border: 1px solid var(--colour-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl) var(--space-xl);
+    box-shadow: var(--shadow-card);
+    margin-bottom: var(--space-xl);
+}
+
+.step-section.active {
+    display: block;           /* only the active step is visible */
+}
+
+.step-title {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--colour-primary);
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-md);
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--colour-primary);
+}
+
+.step-intro {
+    font-size: 0.95rem;
+    color: var(--colour-text-light);
+    margin-bottom: var(--space-lg);
+    line-height: 1.7;
+}
+
+
+/* ----------------------------------------------------------------
+   8. FORM GROUPS, LABELS, INPUTS
+   ---------------------------------------------------------------- */
+
+.form-group {
+    margin-bottom: var(--space-lg);
+}
+
+.form-group > label {
+    display: block;
+    font-size: 0.97rem;
+    font-weight: bold;
+    color: var(--colour-text);
+    margin-bottom: var(--space-sm);
+    line-height: 1.5;
+}
+
+/* Dropdowns (select elements) */
+select {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 0.97rem;
+    color: var(--colour-text);
+    background-color: var(--colour-card);
+    border: 1.5px solid var(--colour-border);
+    border-radius: var(--radius-sm);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%232a6496' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--colour-border-focus);
+    box-shadow: 0 0 0 3px rgba(42, 100, 150, 0.15);
+}
+
+/* Number input (children count) */
+input[type="number"] {
+    display: block;
+    width: 120px;
+    padding: 10px 14px;
+    font-size: 0.97rem;
+    color: var(--colour-text);
+    background-color: var(--colour-card);
+    border: 1.5px solid var(--colour-border);
+    border-radius: var(--radius-sm);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: var(--colour-border-focus);
+    box-shadow: 0 0 0 3px rgba(42, 100, 150, 0.15);
+}
+
+
+/* ----------------------------------------------------------------
+   9. RADIO BUTTONS & CHECKBOXES
+   ---------------------------------------------------------------- */
+
+.radio-group,
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-top: var(--space-xs);
+}
+
+.radio-label,
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: var(--colour-text);
+    cursor: pointer;
+    padding: 10px 14px;
+    border: 1.5px solid var(--colour-border);
+    border-radius: var(--radius-sm);
+    background-color: var(--colour-bg);
+    transition: background-color 0.2s, border-color 0.2s;
+    line-height: 1.5;
+}
+
+.radio-label:hover,
+.checkbox-label:hover {
+    background-color: var(--colour-primary-light);
+    border-color: var(--colour-primary);
+}
+
+/* Custom radio and checkbox sizing */
+.radio-label input[type="radio"],
+.checkbox-label input[type="checkbox"] {
+    margin-top: 3px;
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    accent-color: var(--colour-primary);
+    cursor: pointer;
+}
+
+
+/* ----------------------------------------------------------------
+   10. VISA EXPIRY ROW (two selects side by side)
+   ---------------------------------------------------------------- */
+
+.expiry-row {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.expiry-row select {
+    flex: 1;
+    min-width: 140px;
+}
+
+
+/* ----------------------------------------------------------------
+   11. CONDITIONAL SECTION (children follow-up questions)
+   Hidden by default — shown/hidden by script.js
+   ---------------------------------------------------------------- */
+
+.conditional-section {
+    display: none;            /* script.js sets display:block when needed */
+    background-color: var(--colour-primary-light);
+    border: 1.5px solid var(--colour-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
+.conditional-section .form-group:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ----------------------------------------------------------------
+   12. VALIDATION ERROR MESSAGES
+   ---------------------------------------------------------------- */
+
+.validation-error {
+    font-size: 0.88rem;
+    color: var(--colour-error);
+    background-color: var(--colour-error-bg);
+    border-left: 4px solid var(--colour-error);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-sm);
+    margin-top: var(--space-sm);
+    display: none;            /* shown by script.js only when there is an error */
+}
+
+.validation-error.visible {
+    display: block;
+}
+
+
+/* ----------------------------------------------------------------
+   13. NAVIGATION BUTTONS (Back / Next)
+   ---------------------------------------------------------------- */
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--space-xl);
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.btn-back,
+.btn-next {
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: var(--radius-sm);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    min-width: 120px;
+    text-align: center;
+    box-shadow: var(--shadow-btn);
+}
+
+.btn-back {
+    background-color: var(--colour-card);
+    color: var(--colour-primary);
+    border-color: var(--colour-primary);
+}
+
+.btn-back:hover,
+.btn-back:focus {
+    background-color: var(--colour-primary-light);
+    outline: none;
+}
+
+.btn-next {
+    background-color: var(--colour-primary);
+    color: var(--colour-text-white);
+    border-color: var(--colour-primary);
+    margin-left: auto;        /* pushes Next to the right when Back is absent */
+}
+
+.btn-next:hover,
+.btn-next:focus {
+    background-color: var(--colour-primary-hover);
+    outline: none;
+}
+
+
+/* ----------------------------------------------------------------
+   14. RESULTS PAGE — DISCLAIMER
+   ---------------------------------------------------------------- */
+
+.results-disclaimer {
+    background-color: var(--colour-disclaimer-bg);
+    border: 1.5px solid var(--colour-disclaimer-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-md) var(--space-lg);
+    margin-bottom: var(--space-lg);
+    font-size: 0.9rem;
+    color: var(--colour-disclaimer-text);
+    line-height: 1.6;
+}
+
+
+/* ----------------------------------------------------------------
+   15. SUMMARY OUTPUT
+   The div populated by script.js on the results page
+   ---------------------------------------------------------------- */
+
+#summary-output {
+    margin-bottom: var(--space-xl);
+}
+
+/* Each named section of the summary (e.g. Relationship, Evidence) */
+.summary-section {
+    border: 1px solid var(--colour-border);
+    border-left: 4px solid var(--colour-primary);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-md);
+    background-color: var(--colour-card);
+}
+
+.summary-section-title {
+    background-color: var(--colour-card);
+    color: var(--colour-primary);
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 12px var(--space-md);
+    border-bottom: 1px solid var(--colour-border);
+}
+
+.summary-section-body {
+    padding: var(--space-md) var(--space-md) var(--space-lg);
+    background-color: var(--colour-card);
+}
+
+.summary-row {
+    display: flex;
+    gap: var(--space-md);
+    margin-bottom: var(--space-sm);
+    font-size: 0.93rem;
+    line-height: 1.6;
+    flex-wrap: wrap;
+}
+
+.summary-row:last-child {
+    margin-bottom: 0;
+}
+
+.summary-label {
+    font-weight: bold;
+    color: var(--colour-text);
+    min-width: 180px;
+    flex-shrink: 0;
+}
+
+.summary-value {
+    color: var(--colour-text);
+    flex: 1;
+}
+
+/* Key Guidance section */
+.summary-guidance {
+    background-color: var(--colour-card);
+    border: 1px solid var(--colour-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-md) var(--space-lg);
+    margin-bottom: var(--space-md);
+}
+
+.summary-guidance h3 {
+    color: var(--colour-primary);
+    font-size: 1rem;
+    margin-bottom: var(--space-sm);
+}
+
+.summary-guidance ul {
+    padding-left: var(--space-lg);
+    font-size: 0.93rem;
+    color: var(--colour-text);
+    line-height: 1.8;
+}
+
+/* Timeline warning — draws attention when visa is expiring soon */
+.summary-warning {
+    background-color: #fff4e5;
+    border-left: 4px solid #e67e22;
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm) var(--space-md);
+    margin-top: var(--space-sm);
+    font-size: 0.9rem;
+    color: #7d4e00;
+}
+
+
+/* ----------------------------------------------------------------
+   15b. SUMMARY PREVIEW — "Summary at a Glance"
+   Compact on-screen preview card on the Results page.
+   The full structured case summary is available via the download.
+   ---------------------------------------------------------------- */
+
+/* Preview card container — matches summary-section left-accent style */
+.summary-preview {
+    background-color: var(--colour-card);
+    border: 1px solid var(--colour-border);
+    border-left: 4px solid var(--colour-primary);
+    border-radius: var(--radius-md);
+    padding: var(--space-md) var(--space-lg);
+    margin-bottom: var(--space-md);
+}
+
+/* Section heading inside the preview card */
+.summary-preview-heading {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--colour-primary);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--colour-border);
+}
+
+/* Each key fact row — label and value side by side */
+.summary-preview-item {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid var(--colour-border);
+    font-size: 0.93rem;
+    line-height: 1.6;
+    flex-wrap: wrap;
+}
+
+.summary-preview-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* Label — e.g. "Visa type" */
+.summary-preview-label {
+    font-weight: 600;
+    color: var(--colour-text);
+    min-width: 170px;
+    flex-shrink: 0;
+}
+
+/* Value — e.g. "Spouse or Civil Partner Visa" */
+.summary-preview-value {
+    color: var(--colour-text);
+    flex: 1;
+}
+
+/* Mobile — stack label above value on small screens */
+@media (max-width: 480px) {
+
+    .summary-preview {
+        padding: var(--space-md);
+    }
+
+    .summary-preview-item {
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+
+    .summary-preview-label {
+        min-width: auto;
+        font-size: 0.88rem;
+        color: var(--colour-text-light);
+    }
+}
+
+
+/* ----------------------------------------------------------------
+   16. ACTION BUTTONS (results page)
+   ---------------------------------------------------------------- */
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-xl);
+    border-top: 1px solid var(--colour-border);
+    padding-top: var(--space-lg);
+}
+
+.btn-action {
+    display: block;
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 0.97rem;
+    font-weight: bold;
+    text-align: left;
+    background-color: var(--colour-card);
+    color: var(--colour-text);
+    border: 1.5px solid var(--colour-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    box-shadow: none;
+}
+
+.btn-action:hover,
+.btn-action:focus {
+    background-color: var(--colour-primary);
+    color: var(--colour-text-white);
+    outline: none;
+}
+
+/* Support button — green accent to distinguish it */
+.btn-support {
+    background-color: var(--colour-support-card-top);
+    color: var(--colour-support-accent);
+    border-color: var(--colour-support-accent);
+}
+
+.btn-support:hover,
+.btn-support:focus {
+    background-color: var(--colour-support-accent);
+    color: var(--colour-text-white);
+}
+
+/* Primary action — Download This Summary */
+.btn-action--primary {
+    background-color: var(--colour-primary);
+    color: var(--colour-text-white);
+    border-color: var(--colour-primary);
+    text-align: center;
+    padding: 16px 20px;
+    box-shadow: 0 3px 10px rgba(42, 100, 150, 0.28);
+}
+
+.btn-action--primary:hover,
+.btn-action--primary:focus {
+    background-color: var(--colour-primary-hover);
+    border-color: var(--colour-primary-hover);
+    color: var(--colour-text-white);
+}
+
+
+/* ----------------------------------------------------------------
+   17. INFO BOXES
+   Personal statement guidance and solicitor contact blocks
+   ---------------------------------------------------------------- */
+
+.info-box {
+    background-color: var(--colour-info-bg);
+    border: 1.5px solid var(--colour-info-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+.info-box h3 {
+    color: var(--colour-primary);
+    font-size: 1.1rem;
+    margin-bottom: var(--space-md);
+}
+
+.info-box p {
+    font-size: 0.93rem;
+    color: var(--colour-text);
+    margin-bottom: var(--space-sm);
+    line-height: 1.7;
+}
+
+.info-box ul {
+    padding-left: var(--space-lg);
+    margin-bottom: var(--space-sm);
+}
+
+.info-box ul li {
+    font-size: 0.93rem;
+    color: var(--colour-text);
+    margin-bottom: var(--space-xs);
+    line-height: 1.7;
+}
+
+.info-note {
+    font-style: italic;
+    color: var(--colour-text-light) !important;
+    font-size: 0.88rem !important;
+}
+
+/* Hidden utility class — toggled by script.js */
+.hidden {
+    display: none !important;
+}
+
+
+/* ----------------------------------------------------------------
+   18. LOCAL SUPPORT PAGE
+   ---------------------------------------------------------------- */
+
+.support-card {
+    background-color: var(--colour-card);
+    border: 1px solid var(--colour-border);
+    border-top: 4px solid var(--colour-support-accent);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-lg);
+    box-shadow: var(--shadow-card);
+}
+
+.support-card h3 {
+    color: var(--colour-support-accent);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+}
+
+.support-card p {
+    font-size: 0.93rem;
+    color: var(--colour-text);
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.support-card p:last-of-type {
+    margin-bottom: 0;
+}
+
+.support-note {
+    font-style: italic;
+    color: var(--colour-text-light);
+    font-size: 0.88rem;
+    margin-top: var(--space-md);
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--colour-border);
+}
+
+
+/* ----------------------------------------------------------------
+   19. RESPONSIVE DESIGN — TABLET & MOBILE
+   ---------------------------------------------------------------- */
+
+/* Tablet — up to 768px */
+@media (max-width: 768px) {
+
+    #app {
+        padding: 130px var(--space-md) var(--space-lg);
+    }
+
+    #main-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .step-section {
+        padding: var(--space-lg) var(--space-md);
+    }
+
+    .step-title {
+        font-size: 1.25rem;
+    }
+
+    .summary-label {
+        min-width: 100%;      /* stacks label above value on small screens */
+    }
+
+    .summary-row {
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+
+    .expiry-row {
+        flex-direction: column;
+    }
+
+    .expiry-row select {
+        width: 100%;
+    }
+}
+
+/* Mobile — up to 480px */
+@media (max-width: 480px) {
+
+    /* Hide the Safe Exit label on small screens — button only */
+    .safe-exit-label {
+        display: none;
+    }
+
+    body {
+        font-size: 15px;
+    }
+
+    #app {
+        padding: 120px var(--space-md) var(--space-md);
+    }
+
+    #disclaimer-bar {
+        padding: var(--space-sm) var(--space-md);
+    }
+
+    #disclaimer-bar p {
+        font-size: 0.78rem;
+    }
+
+    #main-header h1 {
+        font-size: 1.35rem;
+    }
+
+    .header-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .step-section {
+        padding: var(--space-md) var(--space-md);
+        border-radius: var(--radius-md);
+    }
+
+    .step-title {
+        font-size: 1.1rem;
+    }
+
+    .btn-back,
+    .btn-next {
+        width: 100%;
+        text-align: center;
+    }
+
+    .button-row {
+        flex-direction: column-reverse;
+        /* Next appears first (on top) on small screens */
+    }
+
+    .btn-next {
+        margin-left: 0;
+    }
+
+    .btn-action {
+        font-size: 0.9rem;
+        padding: 13px 16px;
+    }
+
+    input[type="number"] {
+        width: 100%;
+    }
+}
+
+
+/* ----------------------------------------------------------------
+   20. ACCESSIBILITY — FOCUS STYLES
+   Ensures keyboard users can always see where focus is
+   ---------------------------------------------------------------- */
+
+a:focus,
+button:focus,
+select:focus,
+input:focus {
+    outline: 3px solid var(--colour-primary);
+    outline-offset: 2px;
+}
+
+/* Remove outline on mouse click (keeps it for keyboard only) */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+select:focus:not(:focus-visible),
+input:focus:not(:focus-visible) {
+    outline: none;
+}
+
+
+/* ----------------------------------------------------------------
+   21. UTILITY
+   ---------------------------------------------------------------- */
+
+/* Smooth separator line between major areas */
+hr.divider {
+    border: none;
+    border-top: 1px solid var(--colour-border);
+    margin: var(--space-lg) 0;
+}
+
+
+/* ----------------------------------------------------------------
+   22. WELCOME / SAFETY NOTICE PAGE
+   Styles for the pre-step welcome screen only.
+   All existing step styles are unchanged.
+   ---------------------------------------------------------------- */
+
+/* Bullet list of notice points */
+.welcome-notices {
+    list-style: none;          /* remove default bullets */
+    padding: 0;
+    margin: 0 0 var(--space-lg) 0;
+}
+
+.welcome-notices li {
+    position: relative;
+    padding-left: var(--space-xl);
+    font-size: 0.95rem;
+    color: var(--colour-text);
+    line-height: 1.8;
+    margin-bottom: var(--space-md);
+    border-left: 3px solid var(--colour-primary-light);
+    padding-top: var(--space-xs);
+    padding-bottom: var(--space-xs);
+}
+
+.welcome-notices li:last-child {
+    margin-bottom: 0;
+}
+
+/* Agreement checkbox wrapper — visually distinct from regular form questions */
+.welcome-agreement {
+    background-color: #fef9e7;         /* soft amber — same tone as disclaimer bar */
+    border: 2px solid #f0c040;
+    border-radius: var(--radius-md);
+    padding: var(--space-md) var(--space-lg);
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-xs);
+}
+
+/* Override the checkbox label inside the agreement box —
+   it should sit directly on the amber background, not on its own card */
+.welcome-agreement .checkbox-label {
+    background-color: transparent;
+    border: none;
+    padding: var(--space-xs) 0;
+    font-size: 0.97rem;
+    font-weight: bold;
+    color: var(--colour-text);
+    line-height: 1.6;
+}
+
+.welcome-agreement .checkbox-label:hover {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+/* Mobile adjustments for welcome page */
+@media (max-width: 480px) {
+
+    .welcome-notices li {
+        font-size: 0.9rem;
+        padding-left: var(--space-lg);
+        line-height: 1.7;
+    }
+
+    .welcome-agreement {
+        padding: var(--space-md);
+    }
+}
+
+
+/* ----------------------------------------------------------------
+   23. RESULTS PAGE — NEW CONTENT BOXES
+   Suggested Next Steps and Legal Disclaimer boxes.
+   Uses only existing colour variables — no new colours introduced.
+   ---------------------------------------------------------------- */
+
+/* Suggested Next Steps box */
+.next-steps-box {
+    background-color: var(--colour-card);
+    border: 1px solid var(--colour-border);
+    border-left: 4px solid var(--colour-primary);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-md);
+}
+
+.next-steps-box h3 {
+    color: var(--colour-primary);
+    font-size: 1rem;
+    margin-bottom: var(--space-sm);
+}
+
+.next-steps-box ul {
+    padding-left: var(--space-lg);
+    font-size: 0.93rem;
+    color: var(--colour-text);
+    line-height: 1.9;
+}
+
+.next-steps-box ul li {
+    margin-bottom: var(--space-xs);
+}
+
+.next-steps-box ul li:last-child {
+    margin-bottom: 0;
+}
+
+/* Legal / Safety Disclaimer box */
+.results-full-disclaimer {
+    background-color: var(--colour-disclaimer-bg);       /* soft amber */
+    border: 1.5px solid var(--colour-disclaimer-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-md) var(--space-lg);
+    margin-bottom: var(--space-lg);
+    font-size: 0.88rem;
+    color: var(--colour-disclaimer-text);
+    line-height: 1.6;
+}
+
+
+/* ----------------------------------------------------------------
+   24. KEY GUIDANCE CARDS (Results page)
+   ---------------------------------------------------------------- */
+
+/* Intro paragraph — calm, readable, gently set apart */
+.guidance-intro {
+    background-color: var(--colour-card);
+    border-left: 4px solid var(--colour-primary);
+    border-radius: var(--radius-sm);
+    padding: var(--space-md) var(--space-lg);
+    margin-bottom: var(--space-md);
+}
+
+.guidance-intro p {
+    margin: 0 0 var(--space-sm) 0;
+    font-size: 0.93rem;
+    color: var(--colour-text);
+    line-height: 1.75;
+}
+
+.guidance-intro p:last-child {
+    margin-bottom: 0;
+}
+
+/* Card container — stacks cards vertically */
+.guidance-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+}
+
+/* Individual guidance card */
+.guidance-card {
+    background-color: var(--colour-card);
+    border: 1px solid var(--colour-border);
+    border-left: 3px solid var(--colour-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-md) var(--space-lg);
+}
+
+/* Card title — scannable label */
+.guidance-card-title {
+    font-weight: 600;
+    font-size: 0.93rem;
+    color: var(--colour-primary);
+    margin-bottom: var(--space-xs);
+}
+
+/* Card body text */
+.guidance-card-text {
+    font-size: 0.91rem;
+    color: var(--colour-text);
+    line-height: 1.75;
+}
+
+
+/* ----------------------------------------------------------------
+   25. RESULTS PAGE — TWO-COLUMN PREMIUM LAYOUT
+   Applies only to #step-6. Does not affect steps 1–5,
+   the welcome page, support page, or any global styles.
+   ---------------------------------------------------------------- */
+
+/* Results page heading — bolder than step-title used on steps 1–5 */
+.results-heading {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--colour-primary);
+    line-height: 1.3;
+    margin-bottom: var(--space-md);
+}
+
+/* Desktop breakout — wider than #app for two-column dashboard feel.
+   Steps 1–5 are not affected (they use different IDs).
+   Reset cleanly below 900px to prevent horizontal overflow. */
+#step-6 {
+    width: min(1060px, calc(100vw - 48px));
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Two-column grid wrapper */
+#results-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 32px;
+    align-items: start;
+}
+
+/* Left column — no special framing, just width */
+#results-main {
+    min-width: 0;   /* prevents grid blowout on long content */
+}
+
+/* Right column — sticky so panel stays visible while scrolling */
+#results-panel {
+    position: sticky;
+    top: 160px;     /* clears the fixed safe-exit + disclaimer bars */
+}
+
+/* Panel card */
+.results-panel-inner {
+    background-color: var(--colour-card);
+    border: 1.5px solid var(--colour-border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 24px rgba(42, 100, 150, 0.13);
+    padding: 28px var(--space-lg);
+    text-align: center;
+}
+
+/* Circular icon area — hidden (div is empty, status conveyed by heading and border colour) */
+.results-panel-icon {
+    display: none;
+}
+
+/* Status heading inside the panel */
+.results-panel-heading {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--colour-text);
+    line-height: 1.25;
+    margin-bottom: var(--space-sm);
+}
+
+/* Support text below the heading */
+.results-panel-text {
+    font-size: 0.92rem;
+    color: var(--colour-text);
+    line-height: 1.7;
+    margin-bottom: var(--space-lg);
+}
+
+/* Trust pills container */
+.trust-pills {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    align-items: center;
+}
+
+/* Individual trust pill badge */
+.trust-pill {
+    display: block;
+    width: 100%;
+    background-color: var(--colour-primary-light);
+    color: var(--colour-primary);
+    border: 1px solid var(--colour-info-border);
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* Important notice box — warm but calm, not alarming */
+.results-important-box {
+    background-color: #fef9e7;
+    border: 1.5px solid #f0c040;
+    border-left: 4px solid #c9a200;
+    border-radius: var(--radius-sm);
+    padding: var(--space-md) var(--space-lg);
+    margin-bottom: var(--space-md);
+}
+
+.results-important-title {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #7d6608;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: var(--space-xs);
+}
+
+.results-important-box p {
+    font-size: 0.91rem;
+    color: #5a4a04;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ----------------------------------------------------------------
+   Results layout — responsive
+   Tablet (≤ 900px): stack into single column, panel moves below heading
+   ---------------------------------------------------------------- */
+@media (max-width: 900px) {
+
+    /* Reset the desktop breakout — no horizontal overflow on tablet/mobile */
+    #step-6 {
+        width: auto;
+        margin-left: 0;
+        transform: none;
+    }
+
+    #results-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+
+    #results-panel {
+        position: static;   /* remove sticky on small screens */
+        order: -1;          /* panel appears above the main content */
+    }
+
+    .results-panel-inner {
+        padding: var(--space-md) var(--space-lg);
+    }
+
+    .results-heading {
+        font-size: 1.4rem;
+    }
+}
+
+/* Mobile (≤ 480px) */
+@media (max-width: 480px) {
+
+    .results-heading {
+        font-size: 1.2rem;
+    }
+
+    .results-panel-inner {
+        padding: var(--space-md);
+    }
+
+    .trust-pills {
+        gap: var(--space-xs);
+    }
+}
+
+
+/* ----------------------------------------------------------------
+   26. STATUS PANEL MODIFIERS
+   Applied dynamically by script.js to #results-panel based on
+   the user's answers. Colour is used as a professional accent only —
+   card background stays white, colour appears on border, icon, heading.
+   Three levels: prepared / important / urgent.
+   No risk labels. No pass/fail wording.
+   ---------------------------------------------------------------- */
+
+/* ------ 1. Summary Prepared — teal/calm ------ */
+
+#results-panel.panel-status--prepared .results-panel-inner {
+    border-color: #2e8b6e;
+    border-top: 5px solid #2e8b6e;
+    box-shadow: 0 4px 24px rgba(46, 139, 110, 0.18);
+}
+
+#results-panel.panel-status--prepared .results-panel-icon {
+    background-color: #e6f5f0;
+    border-color: #2e8b6e;
+    border-width: 3px;
+    color: #1a6b4a;
+}
+
+#results-panel.panel-status--prepared .results-panel-heading {
+    color: #1a6b4a;
+}
+
+/* ------ 2. Important Points Identified — warm gold ------ */
+
+#results-panel.panel-status--important .results-panel-inner {
+    border-color: #c9a200;
+    border-top: 5px solid #c9a200;
+    box-shadow: 0 4px 24px rgba(201, 162, 0, 0.18);
+}
+
+#results-panel.panel-status--important .results-panel-icon {
+    background-color: #fef8e1;
+    border-color: #c9a200;
+    border-width: 3px;
+    color: #7d6608;
+}
+
+#results-panel.panel-status--important .results-panel-heading {
+    color: #7d5a00;
+}
+
+/* ------ 3. Urgent Support Recommended — deep rose/plum (softer than crimson) ------ */
+
+#results-panel.panel-status--urgent .results-panel-inner {
+    border-color: #6e3050;
+    border-top: 5px solid #6e3050;
+    box-shadow: 0 4px 24px rgba(110, 48, 80, 0.18);
+}
+
+#results-panel.panel-status--urgent .results-panel-icon {
+    background-color: #f5eaf0;
+    border-color: #6e3050;
+    border-width: 3px;
+    color: #6e3050;
+}
+
+#results-panel.panel-status--urgent .results-panel-heading {
+    color: #6e3050;
+}
+
+
+/* ================================================================
+   27. WELCOME / BEFORE YOU BEGIN PAGE — CARD LAYOUT
+   Applies only to #welcome-page content.
+   Does not affect Step 1–6, Results page, support page,
+   Safe Exit, global buttons, or global form styles.
+   ================================================================ */
+
+/* ----------------------------------------------------------------
+   Header: shield placeholder circle + heading + intro
+   ---------------------------------------------------------------- */
+
+.welcome-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: var(--space-md);
+}
+
+/* Empty placeholder — hidden */
+.welcome-header-icon {
+    display: none;
+}
+
+.welcome-header-text {
+    width: 100%;
+}
+
+.welcome-heading {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--colour-primary);
+    line-height: 1.2;
+    margin-bottom: var(--space-sm);
+}
+
+.welcome-intro {
+    font-size: 0.95rem;
+    color: var(--colour-text-light);
+    line-height: 1.5;
+    margin: 0;
+}
+
+
+/* ----------------------------------------------------------------
+   "What this tool does" card
+   ---------------------------------------------------------------- */
+
+.welcome-what-card {
+    padding: var(--space-md) 0;
+    margin-bottom: var(--space-md);
+}
+
+/* Empty placeholder — hidden */
+.welcome-what-icon {
+    display: none;
+}
+
+.welcome-what-body {
+    width: 100%;
+}
+
+.welcome-what-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--colour-primary);
+    margin-bottom: var(--space-sm);
+}
+
+.welcome-what-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.welcome-what-list li {
+    position: relative;
+    padding-left: var(--space-lg);
+    font-size: 0.93rem;
+    color: var(--colour-text);
+    line-height: 1.75;
+    margin-bottom: var(--space-xs);
+}
+
+.welcome-what-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* CSS-only bullet dot */
+.welcome-what-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--colour-primary);
+}
+
+
+/* ----------------------------------------------------------------
+   Trust / safety card grid (2x2 on desktop)
+   ---------------------------------------------------------------- */
+
+.welcome-trust-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+
+.welcome-trust-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-sm);
+    background-color: var(--colour-card);
+    border: 1px solid var(--colour-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    padding: var(--space-md) var(--space-sm);
+}
+
+/* Base circle for all trust card icons */
+.welcome-trust-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    line-height: 1;
+    /* default colours — overridden by modifier classes below */
+    background-color: var(--colour-primary-light);
+    color: var(--colour-primary);
+    border: 2px solid var(--colour-info-border);
+}
+
+/* Not legal advice — soft rose */
+.welcome-trust-icon--legal {
+    background-color: #fdeef0;
+    color: #9b1c1c;
+    border-color: #e8aaaa;
+}
+
+/* No data stored — soft blue */
+.welcome-trust-icon--data {
+    background-color: var(--colour-primary-light);
+    color: var(--colour-primary);
+    border-color: var(--colour-info-border);
+}
+
+/* Safe Exit available — soft teal */
+.welcome-trust-icon--exit {
+    background-color: #e6f5f0;
+    color: #1a6b4a;
+    border-color: #a8d9c8;
+}
+
+/* No detailed abuse description — soft lavender */
+.welcome-trust-icon--chat {
+    background-color: #f0edf8;
+    color: #5b3ea6;
+    border-color: #c9b8e8;
+}
+
+.welcome-trust-body {
+    width: 100%;
+}
+
+.welcome-trust-title {
+    display: block;
+    font-size: 0.93rem;
+    font-weight: 700;
+    color: var(--colour-text);
+    margin-bottom: var(--space-xs);
+}
+
+.welcome-trust-text {
+    font-size: 0.88rem;
+    color: var(--colour-text-light);
+    line-height: 1.6;
+    margin: 0;
+}
+
+
+/* ----------------------------------------------------------------
+   Important notice box
+   ---------------------------------------------------------------- */
+
+.welcome-important {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    background-color: #fef9e7;
+    border: 1.5px solid #f0c040;
+    border-left: 4px solid #c9a200;
+    border-radius: var(--radius-sm);
+    padding: var(--space-md) var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+/* Plain "i" in a small circle */
+.welcome-important-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #f0c040;
+    color: #5a4a04;
+    font-size: 0.85rem;
+    font-weight: 700;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.welcome-important p {
+    font-size: 0.91rem;
+    color: #5a4a04;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.welcome-important strong {
+    color: #7d6608;
+}
+
+
+/* ----------------------------------------------------------------
+   Responsive — tablet (max-width: 768px)
+   Trust grid collapses from 4-col to 2x2.
+   ---------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+    .welcome-trust-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .welcome-heading {
+        font-size: 1.55rem;
+    }
+}
+
+
+/* ----------------------------------------------------------------
+   Responsive — mobile (max-width: 480px)
+   Trust grid stays 2x2.
+   ---------------------------------------------------------------- */
+
+@media (max-width: 480px) {
+
+    .welcome-trust-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-xs);
+    }
+
+    .welcome-heading {
+        font-size: 1.3rem;
+    }
+
+    .welcome-trust-card {
+        padding: var(--space-sm);
+    }
+}
+
+
+/* ================================================================
+   28. PREMIUM ANSWER OPTION CARDS
+   Scoped strictly to .radio-group .radio-label and
+   .checkbox-group .checkbox-label only.
+   Does NOT affect .welcome-agreement .checkbox-label,
+   the welcome page, results page, support page, or any global style.
+   ================================================================ */
+
+/* ----------------------------------------------------------------
+   Base card — overrides Section 9 defaults for scoped labels only.
+   Extra right padding reserves space for the indicator circle.
+   ---------------------------------------------------------------- */
+
+.radio-group .radio-label,
+.checkbox-group .checkbox-label {
+    position: relative;
+    padding: 13px 52px 13px 16px;
+    background-color: var(--colour-card);
+    border: 1.5px solid var(--colour-border);
+    border-radius: var(--radius-md);
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+/* ----------------------------------------------------------------
+   Accessible visual hide for native inputs.
+   Standard sr-only pattern — element stays in the DOM,
+   remains keyboard-focusable, and is read by screen readers.
+   Clicking the label card still toggles the input correctly.
+   ---------------------------------------------------------------- */
+
+.radio-group .radio-label input[type="radio"],
+.checkbox-group .checkbox-label input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ----------------------------------------------------------------
+   ::before — indicator circle, always visible on the right.
+   Empty when unchecked, filled teal when checked.
+   ---------------------------------------------------------------- */
+
+.radio-group .radio-label::before,
+.checkbox-group .checkbox-label::before {
+    content: '';
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: var(--colour-card);
+    border: 2px solid var(--colour-border);
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+/* ----------------------------------------------------------------
+   ::after — CSS-only tick mark inside the indicator circle.
+   Drawn using a rotated border trick. No Unicode, no SVG, no emoji.
+   Hidden (opacity:0) by default, shown when checked.
+   ---------------------------------------------------------------- */
+
+.radio-group .radio-label::after,
+.checkbox-group .checkbox-label::after {
+    content: '';
+    position: absolute;
+    right: 22px;
+    top: 50%;
+    transform: translateY(-65%) rotate(45deg);
+    width: 6px;
+    height: 11px;
+    border-right: 2.5px solid var(--colour-card);
+    border-bottom: 2.5px solid var(--colour-card);
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+/* ----------------------------------------------------------------
+   Hover — soft lavender tint, calm lavender border.
+   Replaces the existing blue hover within this scope only.
+   ---------------------------------------------------------------- */
+
+.radio-group .radio-label:hover,
+.checkbox-group .checkbox-label:hover {
+    background-color: #f7f4fd;
+    border-color: #c0a8e8;
+}
+
+.radio-group .radio-label:hover::before,
+.checkbox-group .checkbox-label:hover::before {
+    border-color: #8b6fd0;
+}
+
+/* ----------------------------------------------------------------
+   :has(input:checked) — selected card state.
+   Lavender tinted background, lavender border.
+   ---------------------------------------------------------------- */
+
+.radio-group .radio-label:has(input:checked),
+.checkbox-group .checkbox-label:has(input:checked) {
+    background-color: #f0edf8;
+    border-color: #8b6fd0;
+}
+
+/* Selected — indicator circle fills with teal */
+.radio-group .radio-label:has(input:checked)::before,
+.checkbox-group .checkbox-label:has(input:checked)::before {
+    background-color: #1a6b4a;
+    border-color: #1a6b4a;
+}
+
+/* Selected — tick mark becomes visible */
+.radio-group .radio-label:has(input:checked)::after,
+.checkbox-group .checkbox-label:has(input:checked)::after {
+    opacity: 1;
+}
+
+/* ----------------------------------------------------------------
+   :focus-within — keyboard focus ring on the whole card.
+   Fires when the hidden input inside receives keyboard focus.
+   Preserves full keyboard accessibility.
+   ---------------------------------------------------------------- */
+
+.radio-group .radio-label:focus-within,
+.checkbox-group .checkbox-label:focus-within {
+    outline: 3px solid var(--colour-primary);
+    outline-offset: 2px;
+}
+
+/* ----------------------------------------------------------------
+   Mobile (≤ 480px) — tighter right-side positioning
+   ---------------------------------------------------------------- */
+
+@media (max-width: 480px) {
+
+    .radio-group .radio-label,
+    .checkbox-group .checkbox-label {
+        padding: 12px 48px 12px 14px;
+    }
+
+    .radio-group .radio-label::before,
+    .checkbox-group .checkbox-label::before {
+        right: 12px;
+    }
+
+    .radio-group .radio-label::after,
+    .checkbox-group .checkbox-label::after {
+        right: 20px;
+    }
+}
+
+
+/* ----------------------------------------------------------------
+   29. REDUCED MOTION SAFETY
+   Overrides all animations and transitions for users who have
+   "reduce motion" enabled in their OS or browser accessibility
+   settings. Ensures the tool is safe for every user.
+   ---------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
+/* ================================================================
+   30. EVIDENCE SNAPSHOT CARD (Results page)
+   Used by buildEvidenceSnapshot() and buildUrgentSupportNote()
+   in script.js. Scoped to the Results page only.
+   Does not affect Steps 1–5, Safe Exit, or any global styles.
+   Reuses existing colour variables throughout — no new colours.
+   ================================================================ */
+
+/* Card wrapper — matches the visual weight of .summary-preview */
+.evidence-snapshot {
+    background-color: var(--colour-card);
+    border: 1px solid var(--colour-border);
+    border-left: 4px solid var(--colour-primary);
+    border-radius: var(--radius-md);
+    padding: var(--space-md) var(--space-lg);
+    margin-bottom: var(--space-md);
+}
+
+/* Status heading — single-line summary of the evidence position */
+.evidence-snapshot-heading {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--colour-primary);
+    margin-bottom: var(--space-sm);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--colour-border);
+}
+
+/* Body paragraph beneath the heading */
+.evidence-snapshot-text {
+    font-size: 0.93rem;
+    color: var(--colour-text);
+    line-height: 1.75;
+    margin-top: var(--space-sm);
+    margin-bottom: 0;
+}
+
+/* Small uppercase label above the short evidence list */
+.evidence-snapshot-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--colour-text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-xs);
+}
+
+/* Short evidence item list — up to 3 selected items */
+.evidence-snapshot-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.evidence-snapshot-list li {
+    position: relative;
+    padding-left: var(--space-lg);
+    font-size: 0.91rem;
+    color: var(--colour-text);
+    line-height: 1.7;
+    margin-bottom: var(--space-xs);
+}
+
+.evidence-snapshot-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* CSS-only bullet dot — no Unicode, no image, no SVG */
+.evidence-snapshot-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--colour-primary);
+}
+
+/* Overflow line shown when more than 3 items are selected */
+.evidence-snapshot-more {
+    font-size: 0.88rem;
+    color: var(--colour-text-light);
+    font-style: italic;
+    margin-top: var(--space-xs);
+    padding-left: var(--space-lg);
+}
+
+/* ----------------------------------------------------------------
+   Helpline note — calm, non-alarming callout used by
+   buildUrgentSupportNote() when urgent triggers are present.
+   Distinct from .summary-warning (amber/orange) to avoid
+   causing distress. Uses the soft primary-light blue palette.
+   ---------------------------------------------------------------- */
+
+.helpline-note {
+    background-color: var(--colour-primary-light);
+    border: 1px solid var(--colour-border);
+    border-left: 4px solid var(--colour-primary);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm) var(--space-md);
+    margin-top: var(--space-sm);
+    font-size: 0.91rem;
+    color: var(--colour-text);
+    line-height: 1.7;
+}
+
+
+/* ================================================================
+   31. PRINT / PDF STYLES
+   Applies only when the page is printed or saved as PDF.
+   All existing screen styles above are fully unchanged.
+
+   NOTE: Chrome print headers and footers (date, page number, and
+   local file path) are a browser setting and cannot be controlled
+   by CSS. To remove them before saving as PDF: open Chrome's print
+   dialog, expand "More settings", and uncheck "Headers and footers".
+   ================================================================ */
+
+@media print {
+
+    /* ----------------------------------------------------------------
+       Remove box shadows throughout — they reproduce as grey smudges
+       on paper and PDF. Preserve exact border and background colours
+       so coloured accents (blue, amber) render correctly in print.
+       ---------------------------------------------------------------- */
+    * {
+        box-shadow: none !important;
+        text-shadow: none !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    /* ----------------------------------------------------------------
+       Hide screen-only chrome.
+       - Fixed bars (safe exit, disclaimer) served their screen purpose
+         and add nothing to a printed document.
+       - Progress indicator is navigation-only.
+       - Action buttons and button rows are screen interactions only.
+       - Supplementary toggle panels (personal statement guidance,
+         solicitor contact) are screen-only expandable sections.
+       ---------------------------------------------------------------- */
+    #safe-exit-bar,
+    #disclaimer-bar,
+    #progress-container,
+    .action-buttons,
+    .button-row,
+    #personal-statement-guidance,
+    #solicitor-contact {
+        display: none !important;
+    }
+
+    /* ----------------------------------------------------------------
+       Fix app top padding.
+       On screen 120px clears the two fixed bars above the content.
+       In print those bars are hidden — normal top spacing applies.
+       max-width: 100% and margin: 0 use the full page width.
+       ---------------------------------------------------------------- */
+    #app {
+        padding-top: var(--space-xl);
+        max-width: 100%;
+        margin: 0;
+    }
+
+    /* ----------------------------------------------------------------
+       Step section card framing.
+       The card border and padding are screen affordances — they add
+       an unnecessary box outline and excess whitespace around the
+       entire printed page.
+       ---------------------------------------------------------------- */
+    .step-section {
+        border: none;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    /* ----------------------------------------------------------------
+       Results page layout.
+       Collapse the two-column grid to a single column and remove
+       sticky positioning from the status panel so it flows naturally
+       in the printed document.
+       ---------------------------------------------------------------- */
+    #results-layout {
+        display: block;
+    }
+
+    #results-panel {
+        position: static;
+        margin-top: var(--space-lg);
+        margin-bottom: var(--space-lg);
+    }
+
+    /* ----------------------------------------------------------------
+       Disclaimer handling.
+       Hide the small inline amber disclaimer at the top of the
+       results section — it is redundant in print.
+       .results-important-box (the brief "Important" notice) is kept.
+       .results-full-disclaimer (the full legal text at the bottom)
+       is kept as the single authoritative printed disclaimer.
+       ---------------------------------------------------------------- */
+    .results-disclaimer {
+        display: none !important;
+    }
+
+    /* ----------------------------------------------------------------
+       Page-break rules.
+       Prevent key content blocks from splitting awkwardly across
+       printed pages. Both modern (break-inside) and legacy
+       (page-break-inside) properties are set for broad compatibility.
+       ---------------------------------------------------------------- */
+    .summary-preview,
+    .evidence-snapshot,
+    .next-steps-box,
+    .guidance-intro,
+    .guidance-card,
+    .results-important-box,
+    .results-full-disclaimer,
+    #results-panel {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    /* ----------------------------------------------------------------
+       Links — ensure they remain readable in black and white print.
+       ---------------------------------------------------------------- */
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+
+}
